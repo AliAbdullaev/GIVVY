@@ -24,7 +24,9 @@ def create_contact():
                  'mobile_phone': phone}
     create_contact_response = requests.post(url, json=(data_dict), headers=headers)
     print(create_contact_response.json())
+    body = create_contact_response.json()
     assert create_contact_response.status_code == 201
+    user_id = body['data']['id']
 
 create_contact()
 
