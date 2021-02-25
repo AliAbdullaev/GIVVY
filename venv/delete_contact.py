@@ -28,6 +28,7 @@ def create_contact():
     assert create_contact_response.status_code == 201
     user_id = body['data']['id']
     delete_contact(user_id)
+    view_contact(user_id)
 
 def delete_contact(user_id):
 
@@ -38,6 +39,15 @@ def delete_contact(user_id):
     print(delete_contact_response.json())
     print(delete_contact_response.status_code)
     assert delete_contact_response.status_code == 200
+
+def view_contact(user_id):
+
+    url = "http://givvy-api.projestic.com/api/v1/contacts/"
+    headers = {"Authorization": "Bearer 3cc828bd49e868908b7d5892c3c38f5e16826ab9a5a724aeabd0cd96977784c7",
+               "Content-Type": "application/json", "Accept": "application/json"}
+    view_contact_response = requests.get(url + str(user_id), headers=headers)
+    print(view_contact_response.status_code)
+    assert view_contact_response.status_code == 404
 
 create_contact()
 
