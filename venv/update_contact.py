@@ -28,6 +28,7 @@ def create_contact(phone, newEmail):
 def update_contact(user_id, newEmail):
     updated_data = {'first_name': 'Ali', 'last_name': 'Abdullaiev', 'email': newEmail}
     update_contact_response = requests.patch(url + '/' + str(user_id), json=(updated_data), headers=headers)
+    assert update_contact_response.status_code == 200
     contact_info = update_contact_response.json()
     print(contact_info)
     assert contact_info['data']['first_name'] == 'Ali'
