@@ -13,6 +13,7 @@ def search_contact():
     print(create_contact_response.json())
     assert create_contact_response.status_code == 200
 
+
 search_contact()
 
 

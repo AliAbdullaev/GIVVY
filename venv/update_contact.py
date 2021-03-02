@@ -17,7 +17,6 @@ def random_char(y):
     return ''.join(random.choice(string.ascii_letters) for x in range(y))
 
 def create_contact(phone, newEmail):
-
     data_dict = {'first_name': 'Test', 'last_name': 'Tester', 'email': newEmail,
                  'mobile_phone': phone}
     create_contact_response = requests.post(url, json=(data_dict), headers=headers)
@@ -26,40 +25,28 @@ def create_contact(phone, newEmail):
     assert create_contact_response.status_code == 201
     return body
 
-def view_contact_created(user_id, body):
-
-    view_contact_created_response = requests.get(url + '/' + str(user_id), headers=headers)
-    print(view_contact_created_response.status_code)
-    assert view_contact_created_response.json() == body
-    assert view_contact_created_response.status_code == 200
+def update_contact(user_id, newEmail):
+    updated_data = {'first_name': 'Ali', 'last_name': 'Abdullaiev', 'email': newEmail}
+    update_contact_response = requests.patch(url + '/' + str(user_id), json=(updated_data), headers=headers)
+    contact_info = update_contact_response.json()
+    print(contact_info)
+    assert contact_info['data']['first_name'] == 'Ali'
 
 def delete_contact(user_id):
-
     delete_contact_response = requests.delete(url + '/' + str(user_id), headers=headers)
     print(delete_contact_response.json())
     print(delete_contact_response.status_code)
     assert delete_contact_response.status_code == 200
 
-def view_contact_deleted(user_id):
-
-    view_contact_deleted_response = requests.get(url + '/' + str(user_id), headers=headers)
-    print(view_contact_deleted_response.status_code)
-    assert view_contact_deleted_response.status_code == 404
-
-def end_to_end_test():
-
+def update_contact_test():
     phone = '+38{}'.format(random_with_N_digits(7))
     newEmail = random_char(7) + "@gmail.com"
     # create contact
     body = create_contact(phone, newEmail)
-    # view created contact
     user_id = body['data']['id']
-    view_contact_created(user_id, body)
+    # update contact
+    update_contact(user_id, newEmail)
     # delete contact
     delete_contact(user_id)
-    # view deleted contact
-    view_contact_deleted(user_id)
 
-end_to_end_test()
-
-
+update_contact_test()
