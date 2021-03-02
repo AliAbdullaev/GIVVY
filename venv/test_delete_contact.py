@@ -21,7 +21,6 @@ def create_contact(phone, newEmail):
     data_dict = {'first_name': 'Test', 'last_name': 'Tester', 'email': newEmail,
                  'mobile_phone': phone}
     create_contact_response = requests.post(url, json=(data_dict), headers=headers)
-    print(create_contact_response.json())
     body = create_contact_response.json()
     assert create_contact_response.status_code == 201
     return body
@@ -29,21 +28,19 @@ def create_contact(phone, newEmail):
 def view_contact_created(user_id, body):
 
     view_contact_created_response = requests.get(url + '/' + str(user_id), headers=headers)
-    print(view_contact_created_response.status_code)
     assert view_contact_created_response.json() == body
     assert view_contact_created_response.status_code == 200
 
 def delete_contact(user_id):
 
     delete_contact_response = requests.delete(url + '/' + str(user_id), headers=headers)
-    print(delete_contact_response.json())
-    print(delete_contact_response.status_code)
+    status = delete_contact_response.status_code
+    print(str(status) + ' delete test successful')
     assert delete_contact_response.status_code == 200
 
 def view_contact_deleted(user_id):
 
     view_contact_deleted_response = requests.get(url + '/' + str(user_id), headers=headers)
-    print(view_contact_deleted_response.status_code)
     assert view_contact_deleted_response.status_code == 404
 
 def test_end_to_end():

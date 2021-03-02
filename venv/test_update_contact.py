@@ -21,7 +21,6 @@ def create_contact(phone, newEmail):
     data_dict = {'first_name': 'Test', 'last_name': 'Tester', 'email': newEmail,
                  'mobile_phone': phone}
     create_contact_response = requests.post(url, json=(data_dict), headers=headers)
-    print(create_contact_response.json())
     body = create_contact_response.json()
     assert create_contact_response.status_code == 201
     return body
@@ -29,15 +28,14 @@ def create_contact(phone, newEmail):
 def update_contact(user_id, newEmail):
     updated_data = {'first_name': 'Ali', 'last_name': 'Abdullaiev', 'email': newEmail}
     update_contact_response = requests.patch(url + '/' + str(user_id), json=(updated_data), headers=headers)
+    status = update_contact_response.status_code
+    print(str(status) + ' update contact successful')
     assert update_contact_response.status_code == 200
     contact_info = update_contact_response.json()
-    print(contact_info)
     assert contact_info['data']['first_name'] == 'Ali'
 
 def delete_contact(user_id):
     delete_contact_response = requests.delete(url + '/' + str(user_id), headers=headers)
-    print(delete_contact_response.json())
-    print(delete_contact_response.status_code)
     assert delete_contact_response.status_code == 200
 
 def test_update_contact_test():

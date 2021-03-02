@@ -23,7 +23,8 @@ def test_create_contact():
     data_dict = {'first_name': 'Test', 'last_name': 'Tester', 'email': newEmail,
                  'mobile_phone': phone}
     create_contact_response = requests.post(url, json=(data_dict), headers=headers)
-    print(create_contact_response.json())
+    status = create_contact_response.status_code
+    print(str(status) + ' create contact test successful')
     body = create_contact_response.json()
     assert create_contact_response.status_code == 201
     user_id = body['data']['id']

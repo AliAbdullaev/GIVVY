@@ -9,7 +9,8 @@ def test_contact_list():
                "Content-Type": "application/json", "Accept": "application/json"}
     response = requests.get(url, headers=headers)
     response_body = response.json()
-    print(response_body)
+    status = response.status_code
+    print(str(status) + ' contact list test successful')
     assert response.status_code == 200
 
 test_contact_list()
