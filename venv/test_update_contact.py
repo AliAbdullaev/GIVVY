@@ -1,3 +1,4 @@
+import pytest
 import requests
 import json
 import random
@@ -39,7 +40,7 @@ def delete_contact(user_id):
     print(delete_contact_response.status_code)
     assert delete_contact_response.status_code == 200
 
-def update_contact_test():
+def test_update_contact_test():
     phone = '+38{}'.format(random_with_N_digits(7))
     newEmail = random_char(7) + "@gmail.com"
     # create contact
@@ -50,4 +51,4 @@ def update_contact_test():
     # delete contact
     delete_contact(user_id)
 
-update_contact_test()
+test_update_contact_test()

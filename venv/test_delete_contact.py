@@ -46,7 +46,7 @@ def view_contact_deleted(user_id):
     print(view_contact_deleted_response.status_code)
     assert view_contact_deleted_response.status_code == 404
 
-def end_to_end_test():
+def test_end_to_end():
 
     phone = '+38{}'.format(random_with_N_digits(7))
     newEmail = random_char(7) + "@gmail.com"
@@ -60,6 +60,6 @@ def end_to_end_test():
     # view deleted contact
     view_contact_deleted(user_id)
 
-end_to_end_test()
+test_end_to_end()
 
 

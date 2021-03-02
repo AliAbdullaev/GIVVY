@@ -1,8 +1,8 @@
-from selenium import webdriver
+import pytest
 import requests
 import json
 
-def login():
+def test_login():
 
     url = "http://givvy-api.projestic.com/api/v1/users/login"
     param_dict = {'email': 'yeyabed685@geeky83.com', 'password': 'Test123'}
@@ -13,6 +13,6 @@ def login():
     assert response_name == 'Ali Abdullaev'
     print(response.json())
 
-login()
+test_login()
 
 

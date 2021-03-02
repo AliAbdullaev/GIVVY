@@ -1,9 +1,9 @@
-from selenium import webdriver
 import requests
 import json
 import random
 import string
 from random import randint
+import pytest
 
 def random_with_N_digits(n):
     range_start = 10**(n-1)
@@ -13,7 +13,7 @@ def random_with_N_digits(n):
 def random_char(y):
     return ''.join(random.choice(string.ascii_letters) for x in range(y))
 
-def create_contact():
+def test_create_contact():
 
     phone = '+38{}'.format(random_with_N_digits(7))
     newEmail = random_char(7) + "@gmail.com"
@@ -28,7 +28,7 @@ def create_contact():
     assert create_contact_response.status_code == 201
     user_id = body['data']['id']
 
-create_contact()
+test_create_contact()
 
 
 
