@@ -1,4 +1,3 @@
-import pytest
 import requests
 import json
 import random
@@ -13,7 +12,7 @@ def test_contact_list():
                "Content-Type": "application/json", "Accept": "application/json"}
     response = requests.post(url, headers=headers, json=data_bulk())
     status = response.status_code
-    print(str(status) + ' bulk test successful')
+    print('status ' + str(status) + ' bulk test successful')
     assert response.status_code == 201
 
 test_contact_list()

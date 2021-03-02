@@ -3,7 +3,6 @@ import json
 import random
 import string
 from random import randint
-import pytest
 
 def random_with_N_digits(n):
     range_start = 10**(n-1)
@@ -24,7 +23,7 @@ def test_create_contact():
                  'mobile_phone': phone}
     create_contact_response = requests.post(url, json=(data_dict), headers=headers)
     status = create_contact_response.status_code
-    print(str(status) + ' create contact test successful')
+    print('status ' + str(status) + ' create contact test successful')
     body = create_contact_response.json()
     assert create_contact_response.status_code == 201
     user_id = body['data']['id']

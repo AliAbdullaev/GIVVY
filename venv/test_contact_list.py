@@ -1,6 +1,5 @@
 import requests
 import json
-import pytest
 
 def test_contact_list():
 
@@ -10,7 +9,7 @@ def test_contact_list():
     response = requests.get(url, headers=headers)
     response_body = response.json()
     status = response.status_code
-    print(str(status) + ' contact list test successful')
+    print('status ' + str(status) + ' contact list test successful')
     assert response.status_code == 200
 
 test_contact_list()

@@ -1,4 +1,3 @@
-import pytest
 import requests
 import json
 
@@ -10,7 +9,7 @@ def test_search_contact():
     params = {'query': 'Ali'}
     search_contact_response = requests.get(url, params=params, headers=headers)
     status = search_contact_response.status_code
-    print(str(status) + ' search test successful')
+    print('status ' + str(status) + ' search test successful')
     assert search_contact_response.status_code == 200
 
 

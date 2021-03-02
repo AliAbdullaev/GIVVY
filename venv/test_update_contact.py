@@ -1,4 +1,3 @@
-import pytest
 import requests
 import json
 import random
@@ -29,7 +28,7 @@ def update_contact(user_id, newEmail):
     updated_data = {'first_name': 'Ali', 'last_name': 'Abdullaiev', 'email': newEmail}
     update_contact_response = requests.patch(url + '/' + str(user_id), json=(updated_data), headers=headers)
     status = update_contact_response.status_code
-    print(str(status) + ' update contact successful')
+    print('status ' + str(status) + ' update contact successful')
     assert update_contact_response.status_code == 200
     contact_info = update_contact_response.json()
     assert contact_info['data']['first_name'] == 'Ali'

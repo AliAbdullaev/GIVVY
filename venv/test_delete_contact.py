@@ -35,7 +35,7 @@ def delete_contact(user_id):
 
     delete_contact_response = requests.delete(url + '/' + str(user_id), headers=headers)
     status = delete_contact_response.status_code
-    print(str(status) + ' delete test successful')
+    print('status ' + str(status) + ' delete test successful')
     assert delete_contact_response.status_code == 200
 
 def view_contact_deleted(user_id):
